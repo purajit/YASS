@@ -8,7 +8,7 @@ See action.yml
 ### Example
 
 ```yaml
-uses: purajit/YASS@main
+uses: purajit/YASS@v1
 with:
   yass-config-path: ./yass_config_prod.json
 ```
