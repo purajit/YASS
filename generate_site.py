@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import importlib.util
 import json
 import logging
 import os
@@ -21,7 +22,7 @@ DEFAULT_CONFIGS = {
     "static_dir": f"./docs/static",
     "static_url": "",
     "templates_dir": "./templates",
-    "template_functions_module": None,
+    "template_functions_file": None,
 }
 
 def read_json_file(filename):
@@ -113,8 +114,13 @@ def create_template_env(yass_config):
     template_env = Environment(
         loader=FileSystemLoader(searchpath=yass_config["templates_dir"])
     )
-    if yass_config["template_functions_module"]:
-        template_functions_module = __import__(yass_config["template_functions_module"])
+    if yass_config["template_functions_file"]:
+        spec = importlib.util.spec_from_file_location(
+            "yass_custom",
+            yass_config["template_functions_file"]
+        )
+        template_functions_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(template_functions_module)
         for (name, component) in template_functions_module.__dict__.items():
             if callable(component) and name.startswith('yass_'):
                 template_env.globals[name[len('yass_'):]] = component
