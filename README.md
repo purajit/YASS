@@ -168,5 +168,15 @@ However, I prefer the sitemap being explicit and all in one place; this also all
 * The template essentially defines the data type it accepts, so maybe find a way to make that work automatically
 
 ## Used by
-![purajit.com](https://github.com/purajit/YASS/blob/main/assets/purajitcom.jpg?raw=true)
-![mythmancer.com](https://github.com/purajit/YASS/blob/main/assets/mythmancer.jpg?raw=true)
+<p align="center">
+<a href="purajit.com">Site</a> | <a href="https://github.com/purajit/purajit.github.io">GitHub</a>
+</p>
+<p align="center">
+<img alt="purajit.com" src="https://github.com/purajit/YASS/blob/main/assets/purajitcom.png?raw=true"  width="45%">
+</p>
+<p align="center">
+<a href="mythmancer.com">Site</a> | <a href="https://github.com/mythmancer/mythmancer.github.io">GitHub</a>
+</p>
+<p align="center">
+<img alt="mythmancer.com" src="https://github.com/purajit/YASS/blob/main/assets/mythmancer.png?raw=true"  width="45%">
+</p>
