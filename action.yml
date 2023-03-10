@@ -1,5 +1,8 @@
 name: 'YASS static site generator'
 description: 'A GitHub Action to generate a static site based on YASS specifications'
+branding:
+  icon: 'align-left'
+  color: 'orange'
 inputs:
   yass-config-path:
     description: 'Path for YASS configuration'
