@@ -105,7 +105,7 @@ The above section went over some of this, but to summarize:
 * `data`: the actual data of the page, either a json or text blob based on the sitemap definition
 * `title`: this is what the parent of a page will be given as part of its children list
 * `tab_title`: additional parameter that defaults to `title` that you can use as the actual HTML title if you wish
-* `previous_page`: a link to the parent page
+* `parent_page`: a link to the parent page
 * `static_url`: defaults to the empty string, but can be used to switch out the source of your statics
 * All parameters in `global_template_parameters` (see below)
 
@@ -166,8 +166,6 @@ However, I prefer the sitemap being explicit and all in one place; this also all
 
 ## Future work
 * Allow for templating of static files
-* Rename `previous_page` to `parent_page` (breaking change)
-* The template essentially defines the data type it accepts, so maybe find a way to make that work automatically
 
 ## Used by
 <p align="center">
