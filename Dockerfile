@@ -1,5 +1,6 @@
 FROM python:3.10-alpine
 RUN apk add py3-pip
-RUN pip install Jinja2==3.1.2
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 COPY generate_site.py /generate_site.py
 ENTRYPOINT ["/generate_site.py"]

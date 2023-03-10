@@ -3,6 +3,7 @@
 import importlib.util
 import json
 import logging
+import marko
 import os
 import shutil
 import sys
@@ -44,6 +45,8 @@ def generate_page_params(yass_config, level_path, level_data):
             params["data"] = f.read()
             if level_data.get("data_type") == "json":
                 params["data"] = json.loads(params["data"])
+            elif level_data.get("data_type") == "markdown":
+                params["data"] = marko.convert(params["data"])
 
     return params
 
