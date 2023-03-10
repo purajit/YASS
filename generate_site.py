@@ -19,7 +19,6 @@ DEFAULT_CONFIGS = {
     "permanent_paths": ["CNAME", "static"],
     "site_dir": "./docs",
     "sitemap_file": "./sitemap.json",
-    "static_dir": f"./docs/static",
     "static_url": "",
     "templates_dir": "./templates",
     "template_functions_file": None,
