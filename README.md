@@ -44,8 +44,11 @@ at every level - the config options available at each level are:
 Optional (the presence of this defines whether it will an end page or a contents page).  
 Specify the children of the page (if any) as a list of sitemaps.
 * `data_type`:  
-Optional. Only for end pages. Either `json` or `text`. Defaults to `text`.  
-Makes the data in the corresponding file available as the variable `data` within your templates. If `text`, `data` will be the entire text blob; if `json`, `data` will be a json of those values.
+Optional. Only for end pages. One of `json`, `markdown`, `text`. Defaults to `text`.  
+Makes the data in the corresponding file available as the variable `data` within your templates.  
+    * `text`: `data` will be the entire text blob as-is
+    * `json`: `data` will be a dict of those values
+    * `markdown`: `data` will be the `marko`-produced conversion of the given Markdown to HTML
 * `route`:  
 Required at all levels.  
 Defines the web route for the level, as well as the name of the data file/directory within `data_dir` that will be looked up if this is an end page. For the top level, this should be the empty string `""`.
@@ -163,7 +166,6 @@ However, I prefer the sitemap being explicit and all in one place; this also all
 
 ## Future work
 * Allow for templating of static files
-* Simplify the way `data` is passed (no need for additional `params` layer)
 * Rename `previous_page` to `parent_page` (breaking change)
 * The template essentially defines the data type it accepts, so maybe find a way to make that work automatically
 
