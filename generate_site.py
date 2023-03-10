@@ -51,15 +51,15 @@ def generate_page_params(yass_config, level_path, level_data):
     return params
 
 
-def generate_level(yass_config, level_map, previous_level_path):
+def generate_level(yass_config, level_map, parent_level_path):
     print(level_map)
     level_name = level_map["route"]
-    level_path = os.path.join(previous_level_path, level_name)
+    level_path = os.path.join(parent_level_path, level_name)
     output_file = os.path.join(level_path, "index.html")
     link = os.path.join("/", level_path)
     template = level_map.get("template", "template_contents.html")
 
-    LOG.info(f"Generating: {previous_level_path} | {level_path} | {output_file} | {link} | {template}")
+    LOG.info(f"Generating: {parent_level_path} | {level_path} | {output_file} | {link} | {template}")
 
     if "children" in level_map:
         # generate children and get table of contents
@@ -75,7 +75,7 @@ def generate_level(yass_config, level_map, previous_level_path):
     params = {
         "title": level_map["title"],
         "tab_title": level_map.get("tab_title", level_map["title"]),
-        "previous_page": os.path.join("/", previous_level_path),
+        "parent_page": os.path.join("/", parent_level_path),
         "static_url": yass_config["static_url"],
         **yass_config["global_template_parameters"],
         **additional_params,
@@ -91,7 +91,7 @@ def generate_level(yass_config, level_map, previous_level_path):
 
 
 def generate_site(yass_config):
-    return generate_level(yass_config, yass_config["sitemap"], previous_level_path="")
+    return generate_level(yass_config, yass_config["sitemap"], parent_level_path="")
 
 
 def generate_statics(yass_config):
