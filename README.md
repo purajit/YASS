@@ -151,7 +151,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Generate statics
-        uses: purajit/YASS@v1
+        uses: purajit/YASS@v2.0
         with:
           yass-config-path: yass_config_prod.json
 
@@ -169,13 +169,13 @@ However, I prefer the sitemap being explicit and all in one place; this also all
 
 ## Used by
 <p align="center">
-<a href="purajit.com">Site</a> | <a href="https://github.com/purajit/purajit.github.io">GitHub</a>
+<a href="https://purajit.com">Site</a> | <a href="https://github.com/purajit/purajit.github.io">GitHub</a>
 </p>
 <p align="center">
 <img alt="purajit.com" src="https://github.com/purajit/YASS/blob/main/assets/purajitcom.png?raw=true"  width="45%">
 </p>
 <p align="center">
-<a href="mythmancer.com">Site</a> | <a href="https://github.com/mythmancer/mythmancer.github.io">GitHub</a>
+<a href="https://mythmancer.com">Site</a> | <a href="https://github.com/mythmancer/mythmancer.github.io">GitHub</a>
 </p>
 <p align="center">
 <img alt="mythmancer.com" src="https://github.com/purajit/YASS/blob/main/assets/mythmancer.png?raw=true"  width="45%">
