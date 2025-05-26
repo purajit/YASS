@@ -8,7 +8,8 @@ inputs:
     description: 'Path for YASS configuration'
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.yass-config-path }}
+  using: 'composite'
+  steps:
+    - uses: astral-sh/setup-uv@v6
+    - run: |
+        uv run generate_site.py "${{ inputs.yass-config-path }}"
