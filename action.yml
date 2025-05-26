@@ -11,5 +11,7 @@ runs:
   using: 'composite'
   steps:
     - uses: astral-sh/setup-uv@v6
-    - run: |
+    - name: generate static site
+      shell: bash
+      run: |
         uv run generate_site.py "${{ inputs.yass-config-path }}"
