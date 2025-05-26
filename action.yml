@@ -14,4 +14,4 @@ runs:
     - name: generate static site
       shell: bash
       run: |
-        uv run generate_site.py "${{ inputs.yass-config-path }}"
+        uv run "${{ github.action_path }}/generate_site.py" "${{ inputs.yass-config-path }}"
