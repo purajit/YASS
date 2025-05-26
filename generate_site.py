@@ -1,14 +1,20 @@
-#!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "jinja2",
+#     "marko",
+# ]
+# ///
 
 import importlib.util
 import json
 import logging
-import marko
 import os
 import shutil
 import sys
 
-from jinja2 import FileSystemLoader, Environment
+import marko
+from jinja2 import Environment, FileSystemLoader
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
@@ -24,6 +30,7 @@ DEFAULT_CONFIGS = {
     "templates_dir": "./templates",
     "template_functions_file": None,
 }
+
 
 def read_json_file(filename):
     with open(filename) as f:
@@ -53,19 +60,24 @@ def generate_page_params(yass_config, level_path, level_data):
 
 def generate_level(yass_config, level_map, parent_level_path):
     print(level_map)
+    if level_map["route"].startswith("http"):
+        return {"title": level_map["title"], "link": level_map["route"]}
     level_name = level_map["route"]
     level_path = os.path.join(parent_level_path, level_name)
     output_file = os.path.join(level_path, "index.html")
     link = os.path.join("/", level_path)
     template = level_map.get("template", "template_contents.html")
 
-    LOG.info(f"Generating: {parent_level_path} | {level_path} | {output_file} | {link} | {template}")
+    LOG.info(
+        f"Generating: {parent_level_path} | {level_path} | {output_file} | {link} | {template}"
+    )
 
     if "children" in level_map:
         # generate children and get table of contents
         additional_params = {
             "contents": [
-                generate_level(yass_config, child, level_path) for child in level_map["children"]
+                generate_level(yass_config, child, level_path)
+                for child in level_map["children"]
             ],
         }
     else:
@@ -118,14 +130,13 @@ def create_template_env(yass_config):
     )
     if yass_config["template_functions_file"]:
         spec = importlib.util.spec_from_file_location(
-            "yass_custom",
-            yass_config["template_functions_file"]
+            "yass_custom", yass_config["template_functions_file"]
         )
         template_functions_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(template_functions_module)
-        for (name, component) in template_functions_module.__dict__.items():
-            if callable(component) and name.startswith('yass_'):
-                template_env.globals[name[len('yass_'):]] = component
+        for name, component in template_functions_module.__dict__.items():
+            if callable(component) and name.startswith("yass_"):
+                template_env.globals[name[len("yass_") :]] = component
     return template_env
 
 
